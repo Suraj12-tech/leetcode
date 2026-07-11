@@ -14,26 +14,34 @@
  * }
  */
 class Solution {
-    boolean lft = false;
-    boolean rht = false;
+
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        boolean ans = check(p,q);
+        boolean ans = check(p, q);
         return ans;
     }
 
-    public boolean check ( TreeNode P , TreeNode Q){
-        if(P==null && Q==null){
+    public boolean check(TreeNode P, TreeNode Q) {
+        if (P == null && Q == null) {
             return true;
         }
 
-        if((P!=null && Q!=null) && (P.val == Q.val)){
-           lft = check(P.left,Q.left);
-            rht = check(P.right,Q.right);
-        }else{
+        if (P == null || Q == null || P.val != Q.val) {
             return false;
         }
-        
-        if(lft && rht){
+
+        boolean lft = false;
+        boolean rht = true;
+
+        if ((P != null && Q != null) && (P.val == Q.val)) {
+            lft = check(P.left, Q.left);
+            rht = check(P.right, Q.right);
+        } else {
+            return false;
+        }
+
+        if (lft && rht) {
+            System.out.println(lft);
+            System.out.println(rht);
             return true;
         }
         return false;
