@@ -1,33 +1,31 @@
 class Solution {
     public int maxFrequencyElements(int[] arr) {
-
         HashMap<Integer, Integer> check = new HashMap<>();
 
-        // Frequency count
         for (int i = 0; i < arr.length; i++) {
-
             if (!check.containsKey(arr[i])) {
-                check.put(arr[i], 1);
+                int count = 1;
+                check.put(arr[i], count);
             } else {
+
                 check.put(arr[i], check.get(arr[i]) + 1);
+
             }
         }
 
-        // Find maximum frequency
         int max = 0;
+        for (int i = 0; i <arr.length; i++) {
+            if (check.get(arr[i]) > max) {
+                max = check.get(arr[i]);
 
-        for (int value : check.values()) {
-            if (value > max) {
-                max = value;
             }
         }
 
-        // Add all frequencies equal to max
         int ans = 0;
 
-        for (int value : check.values()) {
-            if (value == max) {
-                ans = ans + value;
+        for (int i = 0; i < arr.length; i++) {
+            if (check.get(arr[i]) == max) {
+                ans = ans + 1;
             }
         }
 
